@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+  <div class="row">
+                    <div class="col-md-12">
+                     <h2>Editar Cliente</h2>   
+                     </br>
+                        <h5> {{ user.username }},recuerde que los campos marcados con * son obligatorios. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Perfil del cliente
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Información personal</h3>
+                                    </br>
+                                    <form method="POST" action="/" id="DatosPerfil" role="form"  enctype="multipart/form-data">{% csrf_token %}
+
+                                    
+                                        <div class="form-group">
+                                            <label>Tipo ID: </label>
+                                            <input id="cedula" name="cedula" class="form-control requerido" placeholder="Por favor ingrese el documento, identificación o cédula" value="{{persona.cedula}}" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Número: </label>
+                                            <input id="nombres" name="nombres" class="form-control requerido" placeholder="Ingresa el nombre completo" value="{{persona.nombres}}" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nombres: </label>
+                                            <input id="apellidos" name="apellidos" class="form-control requerido" placeholder="Ingresa los apellidos" value="{{persona.apellidos}}"/>
+                                        </div>
+										<div class="form-group">
+                                            <label>Apellidos: </label>
+                                            <input id="apellidos" name="apellidos" class="form-control requerido" placeholder="Ingresa los apellidos" value="{{persona.apellidos}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha de Nacimiento: </label>
+                                            <input name="fecha_nacimiento" name="fecha_nacimiento" class="datepicker form-control" type="text" data-provide="datepicker"placeholder="Selecciona la fecha de nacimiento" value="{{persona.fecha_nacimiento | date:'Y-m-d'}}">
+                                        </div>
+                                        </br>
+                                        <h6 style="color:red">Los campos marcados con * son obligatorios</h6>
+
+
+
+                                 
+    </div>
+                                
+                                <div class="col-md-6">
+                                    <h3>Contacto</h3>
+                                        <div class="form-group">
+                                            <label>Perfil: </label>
+                                            <input name="correo" class="form-control requerido" placeholder="Ingresa el correo electrónico" value="{{persona.correo}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ciudad: </label>
+                                            <input name="ciudad" class="form-control" placeholder="Ingresa la ciudad de origen" value="{{persona.ciudad}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Dirección: </label>
+                                            <input name="direccion" class="form-control" placeholder="Ingresa la dirección de residencia" value="{{persona.direccion}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Télefono: </label>
+                                            <input name="telefono" class="form-control" placeholder="Ingresa el número telefonico" value="{{persona.telefono}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Celular: </label>
+                                            <input name="celular" class="form-control" placeholder="Ingresa el número de celular" value="{{persona.celular}}"/>
+                                        </div>
+                                        <!--<button  type="submit"> enviar</button>-->
+                                    </form>
+                                    <h3>Acciones</h3>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Form Elements -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <b>Guardado</b>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <button id="GuardarDatos" type="button" class="btn btn-success btn-lg btn-block">Guardar Cambios</button>
+                                                    </br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar como mínimo los campos que contienen *
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal MENSAJE ÉXITO 
+                <div id="mensaje_exito" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Éxito!</h4>
+                      </div>
+                      <div class="modal-body">
+                        La información ha sido guardada satisfactoriamente
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+                <!-- Modal MENSAJE EXISTE -->
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="confirm" class="modal hide fade">
+              <div class="modal-body">
+                Delete?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+              </div>
+            </div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es'
+            });
+
+            
+
+            $("#GuardarDatos").click(function(e){
+                e.preventDefault();
+
+    
+                var valid = true;
+                $('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });
+                
+                if(valid){
+                    
+                    data= $("#DatosPerfil").serialize();
+                    var formData= new FormData($("#DatosPerfil")[0],data);
+                    console.log(formData);
+                    $.ajax({
+                        url: "{% url 'EditarCliente' persona.cedula %}",
+                        type: 'POST',
+                        async: true,
+                        //contentType:"application/json",
+                        contentType: false,
+                        processData: false,
+
+                        dateType:"json",
+                        data: formData,
+                        success: function(resp){
+                            $("#respuesta").html(resp.message);
+                            if(resp.message == '1'){
+                                $('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+                                        window.location.replace("{% url 'ListarCliente' %}")
+                                });;
+
+                            }else{
+                                for(var index in resp.message){
+                                    $('#error').html(resp.message[index]);
+                                }
+                                $('#mensaje_existe').modal('show');
+                            }
+                        },
+                        error: function(jqXHR,estado,error){
+                            alert("Error: "+error+"     Estado: "+estado);
+                        },
+                         
+                    });
+                }else{
+                    $('#mensaje_error').modal('show');
+                }
+
+
+            });
+
+    });
+</script>
+{% endblock %}

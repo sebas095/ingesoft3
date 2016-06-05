@@ -1,0 +1,372 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+  <div class="row">
+                    <div class="col-md-12">
+                     <h2><i class="fa fa-edit fa-1x"></i> Añadir Publicación</h2>   
+                     </br>
+                        <h5> {{ usuario.username }}, por favor diligencie el siguiente formulario con la información del inmueble que desea ofertar.</h5>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Información básica
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form method="POST" action="/" id="DatosPerfil" role="form"  enctype="multipart/form-data">{% csrf_token %}
+
+                                        <div class="form-group">
+                                            <label>Tipo de inmueble: </label>
+                                            <select id="tipo" name="tipo" class="input-xlarge requerido form-control">
+                                              <option>Casa</option>
+                                              <option>Apartamento</option>
+                                              <option>Finca</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Ciudad:</label>
+                                            <input id="ciudad" name="ciudad" class="form-control requerido" placeholder="Ingresa la ciudad" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Dirección:</label>
+                                            <input id="ubicacion" name="ubicacion" class="form-control requerido" placeholder="Ingresa la direccion del inmueble" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Selecciona la ubicacion en el mapa: </label>
+                                            <div id="googleMap" style="width:500px;height:380px;"></div>
+                                        </div>
+                                          	
+                                        </br>
+
+    </div>
+                                
+                                <div class="col-md-6">
+								
+                                        <div class="form-group">
+                                            <label>Descripción del inmueble:</label>
+                                            <textarea id="descripcion" name="descripcion" placeholder="Promociona tu inmueble!" class="requerido form-control"></textarea>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Estrato: </label>
+                                            <select id="estrato" name="estrato" class="input-xlarge requerido form-control">
+                                              <option>1</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Número de habitaciones: </label>
+                                            <input id="numero_habitaciones" name="numero_habitaciones" class="form-control requerido" placeholder="Ingresa un número" required/>
+                                        </div>      
+                                        <div class="form-group">
+                                            <label>valor: </label>
+                                            <input id="valor" name="valor" class="form-control requerido" placeholder="Ingresa un número" required/>
+                                        </div>
+										<div class="form-group">
+                                            <label>deseo: </label>
+                                            <select id="para" name="para" class="input-xlarge requerido form-control">
+											  <option>Arrendar</option>
+											  <option>vender</option>
+											</select>
+										</div>
+
+                                        <div class="form-group">
+                                            <label>Foto 1</label>
+                                            <input type="file" id="foto1" name="foto1" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Foto 2</label>
+                                            <input type="file" id="foto2" name="foto2" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Foto 3</label>
+                                            <input type="file" id="foto3" name="foto3" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Foto 4</label>
+                                            <input type="file" id="foto4" name="foto4" />
+                                        </div>
+
+
+										
+                                        <!--<button  type="submit"> enviar</button>-->
+                                    </form>
+                                    <h3>Acciones</h3>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Form Elements -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <b>Guardar</b>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <button id="GuardarDatos" type="button" class="btn btn-success btn-lg btn-block">Guardar publicación</button>
+                                                    </br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar los campos marcados con rojo
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal MENSAJE ÉXITO 
+                <div id="mensaje_exito" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Éxito!</h4>
+                      </div>
+                      <div class="modal-body">
+                        La información ha sido guardada satisfactoriamente
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+                <!-- Modal MENSAJE EXISTE -->
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="confirm" class="modal hide fade">
+              <div class="modal-body">
+                Delete?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+              </div>
+            </div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDS2SL9lCzPJEpyNlZRrcKr0LSOm7R4t60">
+</script>
+<script>
+var map;
+var myCenter=new google.maps.LatLng(4.816779671181264,-75.70166423913179);
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:15,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  clicks=0
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+    clicks++;
+  });
+}
+
+
+function placeMarker(location) {
+
+  if(clicks>0){
+    marker.setPosition(location);
+  }else{
+    marker = new google.maps.Marker({
+        position: location,
+        map: map,
+    });
+    /*infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });*/
+  }
+  
+  //infowindow.open(map,marker);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+
+
+             
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es'
+            });
+
+            
+
+            $("#GuardarDatos").click(function(e){
+                e.preventDefault();
+
+				
+                var valid = true;
+                $('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });
+                
+                if(valid){
+					//alert("valido");
+                    
+                    data= $("#DatosPerfil").serialize();
+                    var formData= new FormData($("#DatosPerfil")[0],data);
+                    console.log(formData);
+                    $.ajax({
+                        url: "{% url 'addPub' %}",
+                        type: 'POST',
+                        async: true,
+                        //contentType:"application/json",
+                        contentType: false,
+                        processData: false,
+
+                        dateType:"json",
+                        data: formData,
+                        success: function(resp){
+                            $("#respuesta").html(resp.message);
+                            if(resp.message == '1'){
+                                $('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+                                        window.location.replace("{% url 'listPub' %}")
+                                });;
+
+                            }else{
+                                for(var index in resp.message){
+                                    $('#error').html(resp.message[index]);
+                                }
+                                $('#mensaje_existe').modal('show');
+                            }
+                        },
+                        error: function(jqXHR,estado,error){
+                            alert("Error: "+error+"     Estado: "+estado);
+                        },
+                         
+                    });
+                }else{
+                    $('#mensaje_error').modal('show');
+                }
+
+
+            });
+
+    });
+</script>
+{% endblock %}

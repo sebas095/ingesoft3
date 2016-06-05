@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <!-- Javascript -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <style>
+            img {
+                border: 3px solid grey;
+    
+                }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img src="{% static 'assets/img/logo.jpg' %}"  class="img-responsive" alt="Responsive image max-width: 80%">
+            <form action="" method="POST" class="form-signin" role="form">{% csrf_token %}
+                <h2 class="form-signin-heading"><center>LOGIN</center></h2>
+                <label  class="sr-only">Usuario</label>
+                <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
+                </br>
+                <label for="inputPassword" class="sr-only">Contraseña</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+            </form>
+            <h3><center>{{ message }}</center></h3> 
+            <center><a href="{% url 'index' %}">Página principal</a></center>
+        </div> 
+    </body>
+
+</html>
+

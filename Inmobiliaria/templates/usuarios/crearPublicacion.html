@@ -1,0 +1,500 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+{% endblock %}
+{% block content %}
+
+
+
+
+
+<form class="form-horizontal" method="POST" action="/" id="DatosFormulario" role="form" >{% csrf_token %}
+
+
+<!-- Form Name -->
+<legend>Crear Publicación</legend>
+
+
+<div class="row">
+<div class="col-md-6">
+
+
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="codigo">Código de la vacante</label>
+  <div class="controls">
+    <input id="codigo" name="codigo" type="text" placeholder="Ingresa el código de la vacante" class="input-xlarge form-control requerido" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="ocupacion">Ocupación/Cargo</label>
+  <div class="controls">
+    <input id="ocupacion" name="ocupacion" type="text" placeholder="Ingresa la ocupación o cargo" class="input-xlarge requerido form-control" required="">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="control-label" for="funciones">Funciones o actividad del contrato</label>
+  <div class="controls">                     
+    <textarea id="funciones" name="funciones" class="requerido form-control"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="control-label" for="habilidades">Habilidades</label>
+  <div class="controls">                     
+    <textarea id="habilidades" name="habilidades" class="requerido form-control"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="control-label" for="competencias">Competencias</label>
+  <div class="controls">                     
+    <textarea id="competencias" name="competencias" class="requerido form-control"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="meses_experiencia">Meses de experiencia</label>
+  <div class="controls">
+    <input id="meses_experiencia" name="meses_experiencia" type="text" placeholder="" class="input-mini requerido form-control">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="tipo_salario">Tipo de salario</label>
+  <div class="controls">
+    <select id="tipo_salario" name="tipo_salario" class="input-xlarge requerido form-control">
+      <option>básico</option>
+      <option>comisión</option>
+      <option>básico y comisión</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="salario_mensual">Salario Mensual</label>
+  <div class="controls">
+    <input id="salario_mensual" name="salario_mensual" type="text" placeholder="Ingresa en números el salario" class="input-xlarge requerido form-control" required="">
+    
+  </div>
+</div>
+
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="tipo_contrato">Tipo de contrato</label>
+  <div class="controls">
+    <select id="tipo_contrato" name="tipo_contrato" class="input-xlarge requerido form-control">
+      <option>Término fijo</option>
+      <option>Prestación de servicios</option>
+      <option>Término indefinido</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="jornada_trabajo">Jornada de trabajo</label>
+  <div class="controls">
+    <select id="jornada_trabajo" name="jornada_trabajo" class="input-xlarge requerido form-control">
+      <option>Completa</option>
+      <option>Por horas</option>
+      <option>Prestación de servicio</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="hora_inicio">Hora inicio</label>
+  <div class="controls">
+    <select id="hora_inicio" name="hora_inicio" class="input-mini requerido form-control">
+      <option>01</option>
+      <option>02</option>
+      <option>03</option>
+      <option>04</option>
+      <option>05</option>
+      <option>06</option>
+      <option>07</option>
+      <option>08</option>
+      <option>09</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>16</option>
+      <option>17</option>
+      <option>18</option>
+      <option>19</option>
+      <option>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="hora_fin">Hora fin</label>
+  <div class="controls">
+    <select id="hora_fin" name="hora_fin" class="input-mini requerido form-control">
+      <option>01</option>
+      <option>02</option>
+      <option>03</option>
+      <option>04</option>
+      <option>05</option>
+      <option>06</option>
+      <option>07</option>
+      <option>08</option>
+      <option>09</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>16</option>
+      <option>17</option>
+      <option>18</option>
+      <option>19</option>
+      <option>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+    </select>
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+
+
+
+
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="control-label" for="requerimientos_especiales">Requerimientos especiales</label>
+  <div class="controls">                     
+    <textarea id="requerimientos_especiales" name="requerimientos_especiales" class="requerido form-control" ></textarea>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="manejo_personal">Manejo de Personal</label>
+  <div class="controls">
+    <select id="manejo_personal" name="manejo_personal" class="input-mini requerido form-control">
+      <option>Si</option>
+      <option>No</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="manejo_dinero">Manejo de dinero</label>
+  <div class="controls">
+    <select id="manejo_dinero" name="manejo_dinero" class="input-mini requerido form-control">
+      <option>Si</option>
+      <option>No</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="manejo_equipos">Manejo de equipos especializados</label>
+  <div class="controls">
+    <select id="manejo_equipos" name="manejo_equipos" class="input-mini requerido form-control">
+      <option>Si</option>
+      <option>No</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="libreta_militar">Libreta militar</label>
+  <div class="controls">
+    <select id="libreta_militar" name="libreta_militar" class="input-xlarge requerido form-control">
+      <option>Sin libreta</option>
+      <option>primera clase</option>
+      <option>segunda clase</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="vacantes_disponibles">Vacantes disponibles</label>
+  <div class="controls">
+    <input id="vacantes_disponibles" name="vacantes_disponibles" type="text" placeholder="Ingresa el número de vacantes " class="input-large requerido form-control" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="numero_postulantes">Número de postulantes a entrevistar</label>
+  <div class="controls">
+    <input id="numero_postulantes" name="numero_postulantes" type="text" placeholder="Ingresa el número" class="input-medium requerido form-control" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="numero_contacto">Número de contacto</label>
+  <div class="controls">
+    <input id="numero_contacto" name="numero_contacto" type="text" placeholder="Ingresa el numero telefonico" class="input-large requerido form-control" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="ciudad">Ciudad</label>
+  <div class="controls">
+    <input id="ciudad" name="ciudad" type="text" placeholder="Ingresa la ciudad del cargo" class="input-xlarge requerido form-control">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="encargado">Encargado</label>
+  <div class="controls">
+    <input id="encargado" name="encargado" type="text" placeholder="(Director RRHH)" class="input-large requerido form-control" required="">
+  </div>
+</div>
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="control-label" for="estado">Estado</label>
+  <div class="controls">
+    <select id="estado" name="estado" class="input-xlarge requerido form-control">
+      <option>Sin publicar</option>
+      <option>Publicada</option>
+    </select>
+  </div>
+</div>
+
+</div>
+
+</br>
+</br>
+<!-- Button -->
+<div class="form-group">
+  <label class="control-label" for="guardar">Guardar Formulario</label>
+  <div class="controls">
+    <button id="guardar" name="guardar" class="btn btn-primary">GUARDAR</button>
+  </div>
+</div>
+
+</div>
+
+</form>
+
+
+
+
+
+
+
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar como mínimo los campos que contienen *
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+
+
+            $("#guardar").click(function(e){
+                e.preventDefault();
+
+    
+                var valid = true;
+                $('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });
+                
+                if(valid){
+                    
+                    //data= $("#DatosFormulario").serialize();
+                    data= $("#DatosFormulario").serialize();
+                    
+                    console.log(data);
+                    /*$.ajax({
+                        url: "",
+                        type: 'POST',
+                        async: true,
+                        dateType:"json",
+                        data: data,
+                        success: function(resp){
+                            $("#respuesta").html(resp.message);
+                            if(resp.message == '1'){
+                                $('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+                                        window.location.replace("")
+                                });
+
+                            }else{
+                                for(var index in resp.message){
+                                    $('#error').html(resp.message[index]);
+                                }
+                                $('#mensaje_existe').modal('show');
+                            }
+                        },
+                        error: function(jqXHR,estado,error){
+                            alert("Error: "+error+"     Estado: "+estado);
+                        },
+                         
+                    });*/
+                }else{
+                    $('#mensaje_error').modal('show');
+                }
+
+
+            });
+
+    });
+</script>
+{% endblock %}

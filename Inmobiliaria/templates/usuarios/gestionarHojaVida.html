@@ -1,0 +1,913 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+  <div class="row">
+                    <div class="col-md-12">
+                     <h2><i class="fa fa-file fa-1x"></i> Hoja de vida</h2>   
+                     </br>
+                        <h5> {{ usuario.nombres }}, por favor diligencie el siguiente formulario con sus respectivos datos. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Presupuesto
+                        </div>
+                        <div class="panel-body">
+                        <div class="row">
+						
+						
+						
+						
+
+			
+
+
+
+
+
+																	
+									<div id="accordion">
+									  <h3>Información Básica</h3>
+									  <div>
+									  
+										<div class="col-md-6">
+										
+										<form method="POST" action="/" id="FormularioInformacionBasica" role="form" >{% csrf_token %}
+									  
+											<div class="form-group">
+												<label>Tipo de identificación: </label>
+												<select id="tipo_identificacion" name="tipo_identificacion" class="input-mini requerido form-control">
+													<option value="Cédula">Cédula de ciudadania</option>
+													<option value="Pasaporte">Pasaporte</option>
+													<option value="Cedula_extranjeria">Cédula de extranjeria</option>
+													<option value="Tarjeta_identidad">Tarjeta de identidad</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Número de identificación: </label>
+												<input id="numero_identificacion" name="numero_identificacion" class="form-control requerido" placeholder="Ingresa el número de identificación" required/>
+											</div>
+											<div class="form-group">
+												<label>Municipio de expedición: </label>
+												<input id="municipio_expedicion" name="municipio_expedicion" class="form-control requerido" placeholder="Ingresa el municipio de expedición" required/>
+											</div>
+											<div class="form-group">
+												<label>Fecha de Nacimiento: </label>
+												<input name="fecha_nacimiento" name="fecha_nacimiento" class="datepicker form-control" type="text" data-provide="datepicker"placeholder="Selecciona la fecha de nacimiento">
+											</div>
+											<div class="form-group">
+												<label>Nombres: </label>
+												<input id="nombres" name="nombres" class="form-control requerido" placeholder="Ingresa tu primer y segundo nombre" required/>
+											</div>
+											<div class="form-group">
+												<label>Apellidos: </label>
+												<input id="apellidos" name="apellidos" class="form-control requerido" placeholder="Tu primer y segundo apellido" required/>
+											</div>
+										  
+											<div class="form-group">
+												<label>Género: </label>
+												<select id="genero" name="genero" class="input-mini requerido form-control">
+													<option>Masculino</option>
+													<option>Femenino</option>
+												</select>
+											</div>
+											
+											<div class="form-group">
+												<label>Estado civil: </label>
+												<select id="estado_civil" name="estado_civil" class="input-mini requerido form-control">
+													<option value="Soltero">Soltero</option>
+													<option value="Casado">Casado</option>
+													<option value="Union_libre">Union libre</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Cantidad de personas a cargo: </label>
+												<select id="cantidad_personas_cargo" name="cantidad_personas_cargo" class="input-mini requerido form-control">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+													<option value="Mas_de_10">Mas de 10</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Posición familiar: </label>
+												<select id="posicion_familiar" name="posicion_familiar"  class="input-mini requerido form-control">
+													<option value="Padre_de_familia">Padre de familia</option>
+													<option value="Madre_de_familia">Madre de familia</option>
+													<option value="Ninguna">Ninguna</option>
+												</select>
+											</div>
+											
+											<div class="form-group">
+												<label>Libreta militar: </label>
+												<select id="libreta_militar" name="libreta_militar" class="input-mini requerido form-control">
+													<option value="Primera_clase">Primera clase</option>
+													<option value="Segunda_clase">Segunda clase</option>
+													<option value="Sin_libreta">Sin libreta</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Migrante: </label>
+												<select id="migrante" name="migrante" class="input-mini requerido form-control">
+													<option value="Si">Si</option>
+													<option value="No">No</option>
+												</select>
+											</div>
+											
+											<div class="form-group">
+												<label>Numero de tarjeta profesional: </label>
+												<input id="numero_tarjeta_profesional" name="numero_tarjeta_profesional" class="form-control requerido" placeholder="El número de tu tarjeta profesional" required/>
+											</div>
+											
+											<div class="form-group">
+												<label>Departamento de tarjeta profesional: </label>
+												<select id="departamento_tarjeta_profesional" name="departamento_tarjeta_profesional" class="input-mini requerido form-control">
+													<option value="Amazonas">Amazonas</option>
+													<option value="Antioquia">Antioquia</option>
+													<option value="Arauca">Arauca</option>
+													<option value="Atlántico">Atlántico</option>
+													<option value="Bolívar">Bolivar</option>
+													<option value="Boyacá">Boyaca</option>
+													<option value="Caldas">Caldas</option>
+													<option value="Caquetá">Caquetá</option>
+													<option value="Casanare">Casanare</option>
+													<option value="Cauca">Cauca</option>
+													<option value="Cesar">Cesar</option>
+													<option value="Chocó">Chocó</option>
+													<option value="Córdoba">Córdoba</option>
+													<option value="Cundinamarca">Cundinamarca</option>
+													<option value="Güainia">Güainia</option>
+													<option value="Guaviare">Guaviare</option>
+													<option value="Huila">Huila</option>
+													<option value="La Guajira">La Guajira</option>
+													<option value="Magdalena">Magdalena</option>
+													<option value="Meta">Meta</option>
+													<option value="Nariño">Nariño</option>
+													<option value="Norte de Santander">Norte de Santander</option>
+													<option value="Putumayo">Putumayo</option>
+													<option value="Quindío">Quindio</option>
+													<option value="Risaralda">Risaralda</option>
+													<option value="San Andrés y Providencia">San Andrés y Providencia</option>
+													<option value="Santander">Santander</option>
+													<option value="Sucre">Sucre</option>
+													<option value="Tolima">Tolima</option>
+													<option value="Valle del Cauca">Valle del Cauca</option>
+													<option value="Vaupés">Vaupés</option>
+													<option value="Vichada">Vichada</option>
+												</select>
+											</div>
+											
+											
+											</div>
+											
+											<div class="col-md-6">
+											
+											
+											
+											<!-- Textarea -->
+											<div class="form-group">
+											  <label class="control-label" >Perfil ocupacional:</label>
+											  <div class="controls">                     
+												<textarea id="perfil_ocupacional" name="perfil_ocupacional" class="requerido form-control" ></textarea>
+											  </div>
+											</div>
+																						
+																						
+											<!-- Textarea -->
+											<div class="form-group">
+											  <label class="control-label" >Logros alcanzados:</label>
+											  <div class="controls">                     
+												<textarea id="logros_alcanzados" name="logros_alcanzados" class="requerido form-control" ></textarea>
+											  </div>
+											</div>																						
+											
+											
+											
+											
+											
+											
+											
+											
+
+											
+											<div class="form-group">
+												<label>Meses buscando empleo: </label>
+												<select id="tiempo_buscando_empleo" name="tiempo_buscando_empleo" class="input-mini requerido form-control">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+													<option value="Mas_de_10">Mas de 10</option>
+												</select>
+											</div>
+											
+											<div class="form-group">
+												<label>Aspiración salarial en SLMV: </label>
+												<select id="aspiracion_salarial" name="aspiracion_salarial" class="input-mini requerido form-control">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+													<option value="Mas_de_10">Mas de 10</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Pais de residencia: </label>
+												<select id="pais_residencia" name="pais_residencia" class="input-mini requerido form-control">
+													<option value="África do Sul">África do Sul</option>
+													<option value="Albânia">Albânia</option>
+													<option value="Alemanha">Alemanha</option>
+													<option value="Andorra">Andorra</option>
+													<option value="Angola">Angola</option>
+													<option value="Anguilla">Anguilla</option>
+													<option value="Antigua">Antigua</option>
+													<option value="Arábia Saudita">Arábia Saudita</option>
+													<option value="Argentina">Argentina</option>
+													<option value="Armênia">Armênia</option>
+													<option value="Aruba">Aruba</option>
+													<option value="Austrália">Austrália</option>
+													<option value="Áustria">Áustria</option>
+													<option value="Azerbaijão">Azerbaijão</option>
+													<option value="Bahamas">Bahamas</option>
+													<option value="Bahrein">Bahrein</option>
+													<option value="Bangladesh">Bangladesh</option>
+													<option value="Barbados">Barbados</option>
+													<option value="Bélgica">Bélgica</option>
+													<option value="Benin">Benin</option>
+													<option value="Bermudas">Bermudas</option>
+													<option value="Botsuana">Botsuana</option>
+													<option value="Brasil" selected>Brasil</option>
+													<option value="Brunei">Brunei</option>
+													<option value="Bulgária">Bulgária</option>
+													<option value="Burkina Fasso">Burkina Fasso</option>
+													<option value="botão">botão</option>
+													<option value="Cabo Verde">Cabo Verde</option>
+													<option value="Camarões">Camarões</option>
+													<option value="Camboja">Camboja</option>
+													<option value="Canadá">Canadá</option>
+													<option value="Cazaquistão">Cazaquistão</option>
+													<option value="Chade">Chade</option>
+													<option value="Chile">Chile</option>
+													<option value="China">China</option>
+													<option value="Cidade do Vaticano">Cidade do Vaticano</option>
+													<option value="Colombia">Colombia</option>
+													<option value="Congo">Congo</option>
+													<option value="Coréia do Sul">Coréia do Sul</option>
+													<option value="Costa do Marfim">Costa do Marfim</option>
+													<option value="Costa Rica">Costa Rica</option>
+													<option value="Croácia">Croácia</option>
+													<option value="Dinamarca">Dinamarca</option>
+													<option value="Djibuti">Djibuti</option>
+													<option value="Dominica">Dominica</option>
+													<option value="EUA">EUA</option>
+													<option value="Egito">Egito</option>
+													<option value="El Salvador">El Salvador</option>
+													<option value="Emirados Árabes">Emirados Árabes</option>
+													<option value="Equador">Equador</option>
+													<option value="Eritréia">Eritréia</option>
+													<option value="Escócia">Escócia</option>
+													<option value="Eslováquia">Eslováquia</option>
+													<option value="Eslovênia">Eslovênia</option>
+													<option value="Espanha">Espanha</option>
+													<option value="Estônia">Estônia</option>
+													<option value="Etiópia">Etiópia</option>
+													<option value="Fiji">Fiji</option>
+													<option value="Filipinas">Filipinas</option>
+													<option value="Finlândia">Finlândia</option>
+													<option value="França">França</option>
+													<option value="Gabão">Gabão</option>
+													<option value="Gâmbia">Gâmbia</option>
+													<option value="Gana">Gana</option>
+													<option value="Geórgia">Geórgia</option>
+													<option value="Gibraltar">Gibraltar</option>
+													<option value="Granada">Granada</option>
+													<option value="Grécia">Grécia</option>
+													<option value="Guadalupe">Guadalupe</option>
+													<option value="Guam">Guam</option>
+													<option value="Guatemala">Guatemala</option>
+													<option value="Guiana">Guiana</option>
+													<option value="Guiana Francesa">Guiana Francesa</option>
+													<option value="Guiné-bissau">Guiné-bissau</option>
+													<option value="Haiti">Haiti</option>
+													<option value="Holanda">Holanda</option>
+													<option value="Honduras">Honduras</option>
+													<option value="Hong Kong">Hong Kong</option>
+													<option value="Hungria">Hungria</option>
+													<option value="Iêmen">Iêmen</option>
+													<option value="Ilhas Cayman">Ilhas Cayman</option>
+													<option value="Ilhas Cook">Ilhas Cook</option>
+													<option value="Ilhas Curaçao">Ilhas Curaçao</option>
+													<option value="Ilhas Marshall">Ilhas Marshall</option>
+													<option value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
+													<option value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
+													<option value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
+													<option value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+													<option value="Índia">Índia</option>
+													<option value="Indonésia">Indonésia</option>
+													<option value="Inglaterra">Inglaterra</option>
+													<option value="Irlanda">Irlanda</option>
+													<option value="Islândia">Islândia</option>
+													<option value="Israel">Israel</option>
+													<option value="Itália">Itália</option>
+													<option value="Jamaica">Jamaica</option>
+													<option value="Japão">Japão</option>
+													<option value="Jordânia">Jordânia</option>
+													<option value="Kuwait">Kuwait</option>
+													<option value="Latvia">Latvia</option>
+													<option value="Líbano">Líbano</option>
+													<option value="Liechtenstein">Liechtenstein</option>
+													<option value="Lituânia">Lituânia</option>
+													<option value="Luxemburgo">Luxemburgo</option>
+													<option value="Macau">Macau</option>
+													<option value="Macedônia">Macedônia</option>
+													<option value="Madagascar">Madagascar</option>
+													<option value="Malásia">Malásia</option>
+													<option value="Malaui">Malaui</option>
+													<option value="Mali">Mali</option>
+													<option value="Malta">Malta</option>
+													<option value="Marrocos">Marrocos</option>
+													<option value="Martinica">Martinica</option>
+													<option value="Mauritânia">Mauritânia</option>
+													<option value="Mauritius">Mauritius</option>
+													<option value="México">México</option>
+													<option value="Moldova">Moldova</option>
+													<option value="Mônaco">Mônaco</option>
+													<option value="Montserrat">Montserrat</option>
+													<option value="Nepal">Nepal</option>
+													<option value="Nicarágua">Nicarágua</option>
+													<option value="Niger">Niger</option>
+													<option value="Nigéria">Nigéria</option>
+													<option value="Noruega">Noruega</option>
+													<option value="Nova Caledônia">Nova Caledônia</option>
+													<option value="Nova Zelândia">Nova Zelândia</option>
+													<option value="Omã">Omã</option>
+													<option value="Palau">Palau</option>
+													<option value="Panamá">Panamá</option>
+													<option value="Papua-nova Guiné">Papua-nova Guiné</option>
+													<option value="Paquistão">Paquistão</option>
+													<option value="Peru">Peru</option>
+													<option value="Polinésia Francesa">Polinésia Francesa</option>
+													<option value="Polônia">Polônia</option>
+													<option value="Porto Rico">Porto Rico</option>
+													<option value="Portugal">Portugal</option>
+													<option value="Qatar">Qatar</option>
+													<option value="Quênia">Quênia</option>
+													<option value="Rep. Dominicana">Rep. Dominicana</option>
+													<option value="Rep. Tcheca">Rep. Tcheca</option>
+													<option value="Reunion">Reunion</option>
+													<option value="Romênia">Romênia</option>
+													<option value="Ruanda">Ruanda</option>
+													<option value="Rússia">Rússia</option>
+													<option value="Saipan">Saipan</option>
+													<option value="Samoa Americana">Samoa Americana</option>
+													<option value="Senegal">Senegal</option>
+													<option value="Serra Leone">Serra Leone</option>
+													<option value="Seychelles">Seychelles</option>
+													<option value="Singapura">Singapura</option>
+													<option value="Síria">Síria</option>
+													<option value="Sri Lanka">Sri Lanka</option>
+													<option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+													<option value="St. Lúcia">St. Lúcia</option>
+													<option value="St. Vincent">St. Vincent</option>
+													<option value="Sudão">Sudão</option>
+													<option value="Suécia">Suécia</option>
+													<option value="Suiça">Suiça</option>
+													<option value="Suriname">Suriname</option>
+													<option value="Tailândia">Tailândia</option>
+													<option value="Taiwan">Taiwan</option>
+													<option value="Tanzânia">Tanzânia</option>
+													<option value="Togo">Togo</option>
+													<option value="Trinidad & Tobago">Trinidad & Tobago</option>
+													<option value="Tunísia">Tunísia</option>
+													<option value="Turquia">Turquia</option>
+													<option value="Ucrânia">Ucrânia</option>
+													<option value="Uganda">Uganda</option>
+													<option value="Uruguai">Uruguai</option>
+													<option value="Venezuela">Venezuela</option>
+													<option value="Vietnã">Vietnã</option>
+													<option value="Zaire">Zaire</option>
+													<option value="Zâmbia">Zâmbia</option>
+													<option value="Zimbábue">Zimbábue</option>
+												</select>
+											</div>
+											
+											
+										
+										
+											<div class="form-group">
+												<label>Departamento de residencia: </label>
+												<select id="departamento_residencia" name="departamento_residencia" class="input-mini requerido form-control">
+													<option value="Amazonas">Amazonas</option>
+													<option value="Antioquia">Antioquia</option>
+													<option value="Arauca">Arauca</option>
+													<option value="Atlántico">Atlántico</option>
+													<option value="Bolívar">Bolivar</option>
+													<option value="Boyacá">Boyaca</option>
+													<option value="Caldas">Caldas</option>
+													<option value="Caquetá">Caquetá</option>
+													<option value="Casanare">Casanare</option>
+													<option value="Cauca">Cauca</option>
+													<option value="Cesar">Cesar</option>
+													<option value="Chocó">Chocó</option>
+													<option value="Córdoba">Córdoba</option>
+													<option value="Cundinamarca">Cundinamarca</option>
+													<option value="Güainia">Güainia</option>
+													<option value="Guaviare">Guaviare</option>
+													<option value="Huila">Huila</option>
+													<option value="La Guajira">La Guajira</option>
+													<option value="Magdalena">Magdalena</option>
+													<option value="Meta">Meta</option>
+													<option value="Nariño">Nariño</option>
+													<option value="Norte de Santander">Norte de Santander</option>
+													<option value="Putumayo">Putumayo</option>
+													<option value="Quindío">Quindio</option>
+													<option value="Risaralda">Risaralda</option>
+													<option value="San Andrés y Providencia">San Andrés y Providencia</option>
+													<option value="Santander">Santander</option>
+													<option value="Sucre">Sucre</option>
+													<option value="Tolima">Tolima</option>
+													<option value="Valle del Cauca">Valle del Cauca</option>
+													<option value="Vaupés">Vaupés</option>
+													<option value="Vichada">Vichada</option>
+												</select>
+											</div>
+											
+											<div class="form-group">
+												<label>Municipio de residencia: </label>
+												<input id="municipio_residencia" name="municipio_residencia" class="form-control requerido" placeholder="Tu primer y segundo apellido" required/>
+											</div>
+											<div class="form-group">
+												<label>Zona de residencia: </label>
+												<input id="zona_residencia" name="zona_residencia" class="form-control requerido" placeholder="Tu primer y segundo apellido" required/>
+											</div>
+											<div class="form-group">
+												<label>Barrio de residencia: </label>
+												<input id="barrio_residencia" name="barrio_residencia" class="form-control requerido" placeholder="Tu primer y segundo apellido" required/>
+											</div>
+											<div class="form-group">
+												<label>Dirección de correspondencia: </label>
+												<input id="direccion_correspondencia" name="direccion_correspondencia" class="form-control requerido" placeholder="Tu primer y segundo apellido" required/>
+											</div>
+											<div class="form-group">
+												<label>Estrato: </label>
+												<select id="estrato" name="estrato" class="input-mini requerido form-control">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+												</select>
+											</div>
+											</br>
+											<button id="GuardarInformacionBasica" type="button" class="btn btn-primary btn-lg btn-block">Guardar informacion básica</button>
+											
+
+									      </div>
+											
+										</form>
+										</div>
+										
+										
+
+										
+										
+										
+										
+									  <h3>Sisbén (opcional)</h3>
+									  <div>
+											<div class="form-group">
+												<label>Tipo de Sisbén: </label>
+												<select id="tipo" name="tipo" class="input-mini requerido form-control">
+													<option value="Urbano">Urbano</option>
+													<option value="Rural">Rural</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Nivel del Sisbén: </label>
+												<select id="nivel" name="nivel" class="input-mini requerido form-control">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Puntaje de sisbén: </label>
+												<input id="puntaje" name="puntaje" class="form-control requerido" placeholder="puntaje del sisbén" required/>
+											</div>
+											<div class="form-group">
+												<label>Fecha de afiliación: </label>
+												<input name="fecha_afiliacion" name="fecha_afiliacion" class="datepicker form-control" type="text" data-provide="datepicker"placeholder="Selecciona la fecha de nacimiento">
+											</div>
+											<div class="form-group">
+												<label>Municipio: </label>
+												<input id="municipio" name="municipio" class="form-control requerido" placeholder="Ingresa el nombre del presupuesto" required/>
+
+											</div>
+									  </div>
+									  
+									  <h3>Datos de contacto</h3>
+									  <div>
+										
+											<div class="form-group">
+												<label>Indicativo: </label>
+												<input id="indicativo" name="indicativo" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+											
+											<div class="form-group">
+												<label>Número telefonico: </label>
+												<input id="numero_telefonico" name="numero_telefonico" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+											
+											<div class="form-group">
+												<label>Extension: </label>
+												<input id="extension" name="extension" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+										
+											<div class="form-group">
+												<label>Indicativo_pais: </label>
+												<input id="indicativo_pais" name="indicativo_pais" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+										
+											<div class="form-group">
+												<label>Numero celular: </label>
+												<input id="numero_celular" name="numero_celular" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+											
+											<div class="form-group">
+												<label>Correo electrónico: </label>
+												<input id="correo_electronico" name="correo_electronico" class="form-control requerido" placeholder="Indicativo de tu pais" required/>
+											</div>
+										
+										
+									  </div>
+									  
+									  
+									  <h3>Educación</h3>
+									  <div>
+									  
+
+									  
+									  
+									  
+									  </div>
+									  
+									  <h3>Capacitación</h3>
+									  <div>
+									  
+									  
+									  
+									  
+									  
+									  </div>
+									  
+									  <h3>Idiomas</h3>
+									  <div>
+									  
+									  
+									  
+									  
+									  
+									  </div>
+									  
+									  <h3>Experiencia laboral</h3>
+									  <div>
+									  
+									  
+									  
+									  
+									  
+									  </div>
+									  
+									  <h3>Competencias laborales certificadas</h3>
+									  <div>
+									  
+									  
+									  
+									  
+									  
+									  </div>
+									  
+									  <h3>Practicas empresariales</h3>
+									  <div>
+									  
+									  
+									  
+									  
+									  
+									  </div>
+									  
+									  
+									  <h3>Migración</h3>
+									  <div>
+											<div class="form-group">
+												<label>Desea trabajar en el exterior?: </label>
+												<select id="desea_trabajar_exterior" name="desea_trabajar_exterior" class="input-mini requerido form-control">
+													<option value="Si">Si</option>
+													<option value="No">No</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Vive en el exterior?: </label>
+												<select id="vive_exterior" name="vive_exterior" class="input-mini requerido form-control">
+													<option value="Si">Si</option>
+													<option value="No">No</option>
+												</select>
+											</div>
+									  </div>
+									</div>
+									
+									
+						
+							
+
+
+
+
+
+
+			
+		
+						
+						
+						
+						
+						
+						
+						
+						
+						
+                               
+                                <div class="col-md-6">
+								
+								
+	
+								
+								
+                                     
+                                    </br>
+                                    <form method="POST" action="/" id="DatosPresupuesto" role="form"  enctype="multipart/form-data">{% csrf_token %}
+
+
+                                    
+                                        <div class="form-group">
+                                            <label>*Id. del presupuesto: </label>
+                                            <input id="id_presupuesto" name="id_presupuesto" class="form-control requerido" placeholder="Identificador único del presupuesto" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>*Nombre del presupuesto: </label>
+                                            <input id="nombre_presupuesto" name="nombre_presupuesto" class="form-control requerido" placeholder="Ingresa el nombre del presupuesto" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nombre del proyecto: </label>
+                                            <input name="nombre_proyecto" class="form-control" placeholder="Ingresa el nombre del proyecto" />
+                                        </div>
+                                        </br>
+
+
+
+                                 
+                                </div>
+                                
+                                <div class="col-md-6">
+                                        </br>
+                                        <div class="form-group">
+                                            <label>Logo de la constructora</label>
+                                            <input type="file" id="id_foto_constructora" name="foto_constructora" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nombre de la constructora: </label>
+                                            <input name="nombre_constructora" class="form-control" placeholder="Ingresa el nombre de la constructora" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha de Entrega: </label>
+                                            <input name="fecha_entrega" name="fecha_entrega" class="datepicker form-control" type="text" data-provide="datepicker"placeholder="Selecciona la fecha de entrega del presupuesto">
+                                        </div>
+                                    </form>
+
+                                    </br>
+                                    <button id="GuardarDatos" type="button" class="btn btn-success btn-lg btn-block">Guardar datos</button>
+                                                    
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar como mínimo los campos que contienen *
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="confirm" class="modal hide fade">
+              <div class="modal-body">
+                Delete?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+              </div>
+            </div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es'
+            });
+			
+			//$( "#accordion" ).accordion();
+			
+			$( "#accordion" ).accordion({
+			  heightStyle: "content"
+			});
+
+            
+
+            $("#GuardarInformacionBasica").click(function(e){
+                e.preventDefault();
+
+    
+                var valid = true;
+                /*$('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });*/
+                
+                if(valid){
+                    
+                    data= $("#FormularioInformacionBasica").serialize();
+                    var formData= new FormData($("#FormularioInformacionBasica")[0],data);
+                    console.log(data);
+                    $.ajax({
+                        url: "{% url 'InformacionBasica' %}",
+                        type: 'POST',
+                        async: true,
+                        //contentType:"application/json",
+                        contentType: false,
+                        processData: false,
+
+                        dateType:"json",
+                        data: formData,
+                        success: function(resp){
+                            $("#respuesta").html(resp.message);
+                            if(resp.message == '1'){
+                                $('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+                                        //window.location.replace("")
+                                });;
+
+                            }else{
+                                for(var index in resp.message){
+                                    $('#error').html(resp.message[index]);
+                                }
+                                $('#mensaje_existe').modal('show');
+                            }
+                        },
+                        error: function(jqXHR,estado,error){
+                            alert("Error: "+error+"     Estado: "+estado);
+                        },
+                         
+                    });
+                }else{
+                    $('#mensaje_error').modal('show');
+                }
+
+
+            });
+
+    });
+</script>
+{% endblock %}

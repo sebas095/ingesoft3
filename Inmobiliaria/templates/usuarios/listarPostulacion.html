@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/js/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+						<h2>Mis Postulaciones</h2>
+                     </br>
+                        <h5>{{ usuario.nombres }}, de click sobre un registro para ver la postulación con mas detalle </h5>
+                    </div>
+                </div>
+ <!-- /. ROW  -->
+            <hr />
+               
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Postulaciones
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                            {% if postulaciones %}
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Código vacante</th>
+											<th>Empresa</th>
+                                            <th>Ocupación</th>
+                                            <th>Funciones o actividad</th>
+											<th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for pub in postulaciones %}
+                                            <tr class="odd gradeX">
+                                                <td id="" class="center">{{ pub.publicacion.codigo }}</td>
+                                                <td id="" class="center">{{ pub.publicacion.empresa.nombres }}</td>
+                                                <td class="center">{{ pub.publicacion.ocupacion}}</td>
+                                                <td class="center">{{ pub.publicacion.funciones}}</td>
+												<td class="center">{{ pub.estado}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                            <h3>No te has postulado aún</h3>
+                            {% endif %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'assets/js/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'assets/js/dataTables/dataTables.bootstrap.js' %}"></script>
+	
+	    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('#dataTables-example').dataTable();
+
+            $('#dataTables-example tbody').on('click', 'tr', function (ev) {
+                var target = $(ev.target);
+                if(target.not('.borrar').length){
+                    var name = $('td', this).eq(0).text();
+                    var dir = $('td', this).eq(0).attr('id');
+
+                    //alert(name);
+                    window.location.replace(dir)
+                }
+
+                //alert( 'You clicked on '+name+'\'s row' )
+            });
+
+        });
+    </script>
+{% endblock %}

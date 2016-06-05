@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <!-- Javascript -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/login.js' %}"></script>
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="{% static 'assets/img/profile.png' %}" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin"  action="" method="POST" role="form">{% csrf_token %}
+               <h4 class="text-center">Ingresa el correo electronico con el que te registraste en esta pagina:</h4>
+                <input type="text" name="username" class="form-control" placeholder="Ingresa tu correo electrónico" required autofocus>
+
+
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Recuperar</button>
+            </form><!-- /form -->
+
+			
+		<h3><center>{{ message }}</center></h3> 
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    </body>
+
+

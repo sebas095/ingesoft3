@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+  <div class="row">
+                    <div class="col-md-12">
+                     <h2><i class="fa fa-edit fa-1x"></i> Ver Publicación</h2>   
+                     </br>
+                        <h5> {{ usuario.username }}, a continuación verá información mas detallada de la publicación. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Publicación
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form method="POST" action="/" id="DatosPerfil" role="form"  enctype="multipart/form-data">{% csrf_token %}
+
+
+                                        <div class="form-group">
+                                            <h3>Tipo de inmueble: </h3>
+                                            <h4>{{publicacion.tipo}}</h4>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h3>Ciudad:</h3>
+                                            <h4>{{publicacion.ciudad}}</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <h3>Dirección:</h3>
+                                            <h4>{{publicacion.ubicacion}}</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <h3>Estrato: </h3>
+                                            <h4>{{publicacion.estrato}}</h4>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <h3>ubicacion en el mapa: </h3>
+                                            <div id="googleMap" style="width:500px;height:380px;"></div>
+                                        </div>
+                                            
+                                        </br>
+
+                                </div>
+                                
+                                <div class="col-md-6">
+                                
+                                        <div class="form-group">
+                                            <h3>Descripción del inmueble:</h3>
+                                            <h4>{{publicacion.descripcion}}</h4>
+                                            
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                            <h3>Número de habitaciones: </h3>
+                                            <h4>{{publicacion.numero_habitaciones}}</h4>
+                                            
+                                        </div>      
+                                        <div class="form-group">
+                                            <h3>valor: </h3>
+                                            <h4>{{publicacion.valor}}</h4>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <h3>se encuentra para: </h3>
+                                            <h4>{{publicacion.para}}</h4>
+                                            
+                                        </div>
+                                        
+                                        {% if publicacion.foto1 %}
+                                        <div class="form-group">
+                                            <label>Foto 1</label>
+                                                <img id="fotoP" src="{{MEDIA_URL}}{{publicacion.foto1}}" width='200' height='200'  class="img-thumbnail">
+                                        </div>
+                                        {% endif %}
+
+                                        {% if publicacion.foto2 %}
+                                        <div class="form-group">
+                                            <label>Foto 2</label>
+                                                <img id="fotoP" src="{{MEDIA_URL}}{{publicacion.foto2}}" width='200' height='200'  class="img-thumbnail">
+                                        </div>
+                                        {% endif %}
+                                        {% if publicacion.foto3 %}
+                                        <div class="form-group">
+                                            <label>Foto 3</label>
+                                                <img id="fotoP" src="{{MEDIA_URL}}{{publicacion.foto3}}" width='200' height='200'  class="img-thumbnail">
+                                        </div>
+                                        {% endif %}
+                                        {% if publicacion.foto4 %}
+                                        <div class="form-group">
+                                            <label>Foto 4</label>
+                                                <img id="fotoP" src="{{MEDIA_URL}}{{publicacion.foto4}}" width='200' height='200'  class="img-thumbnail">
+                                        </div>
+                                        {% endif %}
+
+										
+                                    
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar los campos marcados con rojo
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal MENSAJE ÉXITO 
+                <div id="mensaje_exito" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Éxito!</h4>
+                      </div>
+                      <div class="modal-body">
+                        La información ha sido guardada satisfactoriamente
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+                <!-- Modal MENSAJE EXISTE -->
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="confirm" class="modal hide fade">
+              <div class="modal-body">
+                Delete?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+              </div>
+            </div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDS2SL9lCzPJEpyNlZRrcKr0LSOm7R4t60">
+</script>
+<script>
+var map;
+var myCenter=new google.maps.LatLng(4.816779671181264,-75.70166423913179);
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:15,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  clicks=0
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+    clicks++;
+  });
+}
+
+
+function placeMarker(location) {
+
+  if(clicks>0){
+    marker.setPosition(location);
+  }else{
+    marker = new google.maps.Marker({
+        position: location,
+        map: map,
+    });
+    /*infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });*/
+  }
+  
+  //infowindow.open(map,marker);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}

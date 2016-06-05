@@ -1,0 +1,477 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block link %}
+<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+  <div class="row">
+                    <div class="col-md-12">
+                     <h2><i class="fa fa-edit fa-1x"></i> Editar Publicación</h2>   
+                     </br>
+                        <h5> {{ usuario.nombres }}, aca puede verificar la información de la oferta de empleo. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Perfil del cliente
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form method="POST" action="/" id="DatosPerfil" role="form"  enctype="multipart/form-data">{% csrf_token %}
+
+
+                                    
+                                        <div class="form-group">
+                                            <label>Código de la vacante:</label>
+                                            <input id="codigo" name="codigo" value="{{publicacion.codigo}}" class="form-control requerido" placeholder="Ingresa el código de la vacante" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ocupación/Cargo: </label>
+                                            <input id="ocupacion" name="ocupacion" value="{{publicacion.ocupacion}}" class="form-control requerido" placeholder="Ocupación o cargo a desempeñar" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Funciones o actividad del contrato:</label>
+                                            <textarea id="funciones" name="funciones" class="requerido form-control">{{publicacion.funciones}}</textarea>
+                                        </div>
+										<div class="form-group">
+                                            <label>Habilidades:</label>
+                                            <textarea id="habilidades" name="habilidades"  class="requerido form-control">{{publicacion.habilidades}}</textarea>
+                                        </div>
+										<div class="form-group">
+                                            <label>Competencias:</label>
+                                            <textarea id="competencias" name="competencias"  class="requerido form-control">{{publicacion.competencias}}</textarea>
+                                        </div>
+										<div class="form-group">
+                                            <label>Meses de experiencia: </label>
+                                            <input id="experiencia" name="experiencia" value="{{publicacion.experiencia}}" class="form-control requerido" placeholder="Número de meses de experiencia necesarios" required/>
+                                        </div>
+										
+										
+										<div class="form-group">
+                                            <label>Tipo de salario: </label>
+                                            <select id="tipo_salario" name="tipo_salario" class="input-xlarge requerido form-control">
+											  <option selected>{{publicacion.tipo_salario}}</option>
+											  <option>básico</option>
+											  <option>comisión</option>
+											  <option>básico y comisión</option>
+											</select>
+                                        </div>
+										<div class="form-group">
+                                            <label>Salario Mensual: </label>
+                                            <input id="salario_mensual" name="salario_mensual" value="{{publicacion.salario_mensual}}" class="form-control requerido" placeholder="Ingresa el valor del salario mensual" required/>
+                                        </div>		
+										<div class="form-group">
+											<label>Tipo de contrato: </label>
+                                            <select id="tipo_contrato" name="tipo_contrato"  class="input-xlarge requerido form-control">
+											  <option selected>{{publicacion.tipo_contrato}}</option>
+											  <option>Término fijo</option>
+											  <option>Prestación de servicios</option>
+											  <option>Término indefinido</option>
+											</select>
+                                        </div>	
+
+
+										
+										
+										<div class="form-group">
+											<label>Jornada de trabajo: </label>
+											<select id="jornada_trabajo" name="jornada_trabajo"  class="input-xlarge requerido form-control">
+											  <option selected>{{publicacion.jornada_trabajo}}</option>
+											  <option>Completa</option>
+											  <option>Por horas</option>
+											  <option>Prestación de servicio</option>
+											</select>
+										</div>
+										
+										<div class="col-md-6">
+										<div class="form-group">
+											<label>Hora de inicio: </label>
+											<select id="hora_inicio" name="hora_inicio" class="input-mini requerido form-control">
+											  <option selected>{{publicacion.hora_inicio}}</option>
+											  <option>01</option>
+											  <option>02</option>
+											  <option>03</option>
+											  <option>04</option>
+											  <option>05</option>
+											  <option>06</option>
+											  <option>07</option>
+											  <option>08</option>
+											  <option>09</option>
+											  <option>10</option>
+											  <option>11</option>
+											  <option>12</option>
+											  <option>13</option>
+											  <option>14</option>
+											  <option>15</option>
+											  <option>16</option>
+											  <option>17</option>
+											  <option>18</option>
+											  <option>19</option>
+											  <option>20</option>
+											  <option>21</option>
+											  <option>22</option>
+											  <option>23</option>
+											  <option>24</option>
+											</select>
+										</div>
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										</div>
+										
+										
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Hora Fin: </label>
+												<select id="hora_fin" name="hora_fin" class="input-mini requerido form-control">
+												  <option selected>{{publicacion.hora_fin}}</option>
+												  <option>01</option>
+												  <option>02</option>
+												  <option>03</option>
+												  <option>04</option>
+												  <option>05</option>
+												  <option>06</option>
+												  <option>07</option>
+												  <option>08</option>
+												  <option>09</option>
+												  <option>10</option>
+												  <option>11</option>
+												  <option>12</option>
+												  <option>13</option>
+												  <option>14</option>
+												  <option>15</option>
+												  <option>16</option>
+												  <option>17</option>
+												  <option>18</option>
+												  <option>19</option>
+												  <option>20</option>
+												  <option>21</option>
+												  <option>22</option>
+												  <option>23</option>
+												  <option>24</option>
+												</select>
+											</div>
+										</div>
+										
+										
+										<div class="form-group">
+                                            <label>Requerimientos especiales: </label>
+                                            <textarea id="requerimientos_especiales" name="requerimientos_especiales" class="requerido form-control" >{{publicacion.requerimientos_especiales}}</textarea>
+                                        </div>
+										
+										
+										
+										
+										
+										
+										
+										
+                                        </br>
+                                        <!--<h6 style="color:red">Los campos marcados con * son obligatorios</h6>-->
+
+    </div>
+                                
+                                <div class="col-md-6">
+								
+
+								
+                                        <div class="form-group">
+                                            <label>Manejo de personal: </label>
+                                            <select id="manejo_personal" name="manejo_personal" class="input-mini requerido form-control">
+											  <option selected>{{publicacion.manejo_personal}}</option>
+											  <option>Si</option>
+											  <option>No</option>
+											</select>
+                                        </div>
+										
+                                        <div class="form-group">
+                                            <label>Manejo de dinero: </label>
+                                            <select id="manejo_dinero" name="manejo_dinero" class="input-mini requerido form-control">
+												<option selected>{{publicacion.manejo_dinero}}</option>
+												<option>Si</option>
+												<option>No</option>
+											</select>
+                                        </div>
+										
+                                        <div class="form-group">
+                                            <label>Manejo de equipos especializados: </label>
+											<select id="manejo_equipos" name="manejo_equipos" class="input-mini requerido form-control">
+											  <option selected>{{publicacion.manejo_equipos}}</option>
+											  <option>Si</option>
+											  <option>No</option>
+											</select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Libreta militar: </label>
+                                                <select id="libreta_militar" name="libreta_militar" class="input-xlarge requerido form-control">
+												  <option selected>{{publicacion.libreta_militar}}</option>
+												  <option>Sin libreta</option>
+												  <option>primera clase</option>
+												  <option>segunda clase</option>
+												</select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Vacantes disponibles: </label>
+                                            <input id="vacantes_disponibles" name="vacantes_disponibles" value="{{publicacion.vacantes_disponibles}}" type="text" placeholder="Ingresa el número de vacantes " class="input-large requerido form-control" required="">
+                                        </div>
+										<div class="form-group">
+                                            <label>Número de postulantes a entrevistar: </label>
+                                            <input id="numero_postulantes" name="numero_postulantes" value="{{publicacion.numero_postulantes}}" type="text" placeholder="Ingresa el número" class="input-medium requerido form-control" required="">
+                                        </div>    
+										<div class="form-group">
+                                            <label>Número de contacto: </label>
+                                            <input id="numero_contacto" name="numero_contacto" value="{{publicacion.numero_contacto}}" type="text" placeholder="Ingresa el numero telefonico" class="input-large requerido form-control" required="">
+										</div>
+										<div class="form-group">
+                                            <label>Ciudad: </label>
+                                            <input id="ciudad" name="ciudad" value="{{publicacion.ciudad}}" type="text" placeholder="Ingresa la ciudad del cargo" class="input-xlarge requerido form-control">
+										</div>
+										<div class="form-group">
+                                            <label>Encargado: </label>
+                                            <input id="encargado" name="encargado" value="{{publicacion.encargado}}" type="text" placeholder="(Director RRHH)" class="input-large requerido form-control" >
+										</div>
+										<div class="form-group">
+                                            <label>Estado de la publicación: </label>
+                                            <select id="estado" name="estado" class="input-xlarge requerido form-control">
+											  <option selected>{{publicacion.estado}}</option>
+											  <option>Sin publicar</option>
+											  <option>Publicada</option>
+											</select>
+										</div>
+										
+				
+										
+                                        <!--<button  type="submit"> enviar</button>-->
+                                    </form>
+                                    <h3>Acciones</h3>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Form Elements -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <b>Guardar</b>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <button id="GuardarDatos" type="button" class="btn btn-success btn-lg btn-block">Guardar publicación</button>
+                                                    </br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+            
+
+                <!-- Modal MENSAJE ERROR -->
+                <div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        Debes llenar los campos marcados con rojo
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal MENSAJE ÉXITO 
+                <div id="mensaje_exito" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Éxito!</h4>
+                      </div>
+                      <div class="modal-body">
+                        La información ha sido guardada satisfactoriamente
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+                <!-- Modal MENSAJE EXISTE -->
+                <div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espera!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error"> </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Éxito
+                        </div>
+                        <div class="modal-body">
+                            La información ha sido guardada satisfactoriamente
+                        </div>
+                        <div class="modal-footer">
+                            <button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="confirm" class="modal hide fade">
+              <div class="modal-body">
+                Delete?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+              </div>
+            </div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es'
+            });
+
+            
+
+            $("#GuardarDatos").click(function(e){
+                e.preventDefault();
+
+				
+                var valid = true;
+                $('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });
+                
+                if(valid){
+					//alert("valido");
+                    
+                    data= $("#DatosPerfil").serialize();
+                    var formData= new FormData($("#DatosPerfil")[0],data);
+                    console.log(formData);
+                    $.ajax({
+                        url: "{% url 'EditarPublicacion' publicacion.codigo %}",
+                        type: 'POST',
+                        async: true,
+                        //contentType:"application/json",
+                        contentType: false,
+                        processData: false,
+
+                        dateType:"json",
+                        data: formData,
+                        success: function(resp){
+                            $("#respuesta").html(resp.message);
+                            if(resp.message == '1'){
+                                $('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+                                        window.location.replace("{% url 'ListarPublicaciones' %}")
+                                });;
+
+                            }else{
+                                for(var index in resp.message){
+                                    $('#error').html(resp.message[index]);
+                                }
+                                $('#mensaje_existe').modal('show');
+                            }
+                        },
+                        error: function(jqXHR,estado,error){
+                            alert("Error: "+error+"     Estado: "+estado);
+                        },
+                         
+                    });
+                }else{
+                    $('#mensaje_error').modal('show');
+                }
+
+
+            });
+
+    });
+</script>
+{% endblock %}

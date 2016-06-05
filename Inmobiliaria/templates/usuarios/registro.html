@@ -1,0 +1,280 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <!-- Javascript -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/login.js' %}"></script>
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/registro.css' %}">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<link href="{% static 'assets/css/datepicker.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="{% static 'assets/img/profile.png' %}" />
+            <p id="profile-name" class="profile-name-card">Solicitud de registro</p>
+			</br>
+			<form class="form-signin" id="formulario_registro"  action="" method="POST" role="form">{% csrf_token %}
+			<div class="row">
+                <div class="col-md-6">
+
+						<div class="form-group">
+						  <label for="sel1">Tipo de documento:</label>
+						  <select class="form-control" id="sel" name="tipo">
+							<option value="Cédula">Cédula</option>
+							<option value="NIT">NIT</option>
+							<option value="Pasaporte">Pasaporte</option>
+							<option value="Cedula_extranjeria">Cédula de extranjeria</option>
+							<option value="Targeta_identidad">Targeta de identidad</option>
+						  </select>
+						</div>
+						<div class="form-group">
+						  <label for="sel1">Número de identificación:</label>
+						  <input type="text"  name="numero" class="form-control requerido" placeholder="identificacion" required>
+						</div>
+						<div class="form-group">
+						  <label for="sel1">Contraseña:</label>
+						  <input type="password" id="password1" name="password1" class="form-control requerido" placeholder="Contraseña" required>
+						</div>
+						<div class="form-group">
+						  <label for="sel1">Repita ontraseña:</label>
+						  <input type="password" id="password2" name="password2" class="form-control requerido" placeholder="Repetir Contraseña" required>
+						</div>
+				</div>
+				<div class="col-md-6">
+
+					<div class="form-group">
+					  <label>Correo electronico:</label>
+					  <input type="e-mail" name="username" class="form-control requerido"  placeholder="Ingresa tu correo electronico" required>
+					</div>
+
+					<div class="form-group">
+					  <label id="cambio">Nombres:</label>
+					  <input type="text" name="nombres" class="form-control requerido"required>
+					</div>
+					<div class="form-group persona">
+					  <label>Apellidos:</label>
+					  <input type="text" name="apellidos" class="form-control requerido"  required>
+					</div>
+					<div class="form-group persona">
+						<label>Fecha de Nacimiento: </label>
+						<input  name="fecha_nacimiento" class="datepicker form-control requerido" type="text" data-provide="datepicker"placeholder="Selecciona fecha de nacimiento">
+					</div>
+
+				</div>
+				
+			</div>
+			</form><!-- /form -->
+			</br>
+			<button id="enviar" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">REGISTRARME!</button>
+
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    </body>
+	
+	
+	
+
+	<!-- Modal MENSAJE ERROR -->
+	<div id="mensaje_error" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Espera!</h4>
+		  </div>
+		  <div class="modal-body">
+			Debes llenar Todos los campos
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- Modal MENSAJE EXISTE -->
+	<div id="mensaje_existe" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Espera!</h4>
+		  </div>
+		  <div class="modal-body">
+			<div id="error"> Las contraseñas deben coincidir</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
+
+
+
+
+	<div class="modal fade" id="mensaje_exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Éxito
+			</div>
+			<div class="modal-body">
+				La información ha sido guardada satisfactoriamente
+			</div>
+			<div class="modal-footer">
+				<button id="aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+	<script src="{% static 'assets/js/bootstrap-datepicker.js' %}"></script>
+	<script type="text/javascript">
+
+//--------------------------------  CSRF TOKEN----------------------------
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+//---------------------------------------------------------------------------------
+
+
+    $( document ).ready(function() {
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es'
+            });
+			
+			$('.empresa').hide();
+
+            $("#sel").on('change',function(){
+				if($(this).val()=='NIT'){
+					//alert('hola');
+					$('.persona').hide();
+					$('.persona').children().next().removeClass('requerido');
+					$('#cambio').html('Razon social:');
+				}else{
+					$('.persona').show();
+					$('.persona').children().next().addClass('requerido');
+					$('#cambio').html('Nombres:');
+				}
+			
+			});
+
+            $("#enviar").click(function(e){
+                e.preventDefault();
+
+    
+                var valid = true;
+                $('.requerido').each(function(){
+                   if( $(this).val() == '' ){
+                      valid = false;
+                      $(this).parent().addClass('has-error');
+                   }else{
+                       $(this).parent().removeClass('has-error');
+                   }
+                });
+				
+				if( $('#password1').val() == $('#password2').val()){
+					
+					if(valid){
+						//alert('valido');
+						data= $("#formulario_registro").serialize();
+						//console.log(data);
+						var formData= new FormData($("#formulario_registro")[0],data);
+						//console.log(formData);
+						$.ajax({
+							url: "{% url 'registro' %}",
+							type: 'POST',
+							async: true,
+							//contentType:"application/json",
+							contentType: false,
+							processData: false,
+
+							dateType:"json",
+							data: formData,
+							success: function(resp){
+								$("#respuesta").html(resp.message);
+								if(resp.message == '1'){
+									$('#mensaje_exito').modal('show').one('click', '#aceptar', function (e) {
+											window.location.replace("{% url 'inicio' %}")
+									});
+
+								}else{
+									for(var index in resp.message){
+										$('#error').html(resp.message[index]);
+									}
+									$('#mensaje_existe').modal('show');
+								}
+							},
+							error: function(jqXHR,estado,error){
+								alert("Error: "+error+"     Estado: "+estado);
+							},
+							 
+						});
+					}else{
+						$('#mensaje_error').modal('show');
+					}
+					
+					
+					
+					
+				}else{
+					valid2 = false;
+					$('#password1').parent().addClass('has-error');
+					$('#password2').parent().addClass('has-error');
+					$('#mensaje_existe').modal('show');
+				}
+                
+                
+
+
+            });
+
+    });
+</script>
+
+
